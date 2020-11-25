@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #default-div {
+            background-color:skyblue;  /* 창 크기를 어떻게 하든 창의 맨 끝까지 색칠 처리가 됨. */
+            width: 100px;
+            height:100px;  /* block 태그는 가로, 세로 길이를 지정 가능.
+                                글씨가 겹침.
+                                창의 끝까지 가지 않고 지정한 가로, 세로 길이만큼만 색칠됨.
+                                밑으로 글씨가 넘치는 것 : overflow.
+                                100픽셀 * 100픽셀보다 컨텐츠가 넘었을 때 밑으로 주르륵 글씨가 넘침. */
+            overflow-y: scroll;  /* 가지고 싶은 컨텐츠 만큼의 div 크기가 안된다면 overflow 처리 해주기
+                                    scroll : 스크롤하면 컨텐츠 밑으로 주르륵 다 보임
+                                    hidden : 넘치는 컨텐츠 감춤
+                                    */
+        }
+
+        #default-span{
+            background-color: pink;  /* 창 크기를 어떻게 하든 콘텐츠 길이만큼만 색칠 처리가 됨. */
+                                            
+            width: 100px;  /* inline 태그는 가로, 세로 길이 지정 불가능
+                                왜? inline 태그는 컨텐츠길이만큼만 색칠가능하기 때문에 크기 지정을 따로 할 수 없음 */
+            height: 100px;  
+        }
+
+        #box1{
+            /* display: inline-block; */
+            /*float:left;*/  /* float : 띄어버리다
+                            왼쪽 공간을 띄어버린 상태로 없애버리겠다.
+                            box1은 제일 처음 box라서 효과 없음
+                            
+                            box2, box3에는 효과 있음
+                            왼쪽 공간 X -> 붙인다.
+                            
+                            근데, 문제점 ; div 가 오더라도 글이 붙어버림..*/
+            background-color:greenyellow;
+            width: 100px;
+            height: 100px;
+        }
+
+        #box2{
+            /* display: inline-block; */
+            /*float:left;*/
+            background-color:grey;
+            width: 100px;
+            height: 100px;
+        }
+
+        #box3{
+            /* display: inline-block; */
+            /*float:left;*/
+            background-color:indianred;
+            width: 100px;
+            height: 100px;
+            /*clear:both;*/  /* 이 처리 일일히 해줘야 함.. 
+                            항상 제일 마지막에 있는 float을 해제 해줘야 함
+                            그래서 정적인 웹 페이지를 만들 때에는 float 사용하는 것 별로임.
+                            
+                            그래서 등장한 방법 : display: inline-block
+                            inline tag를 block tag로 취급,
+                            block tag를 inline tag로 취급 
+                            근데 기본 속성은 그대로 가지고 있음
+
+                            inline-block 방법 이제 거의 안 쓰는 방법.
+                            요즘에는 flex 방법 사용.*/
+        }
+
+        #flex-container{
+            height: 500px;
+            background-color:beige;
+            display: flex;  /* 안쪽의 배치를 유연하게 만들어줌. */
+            justify-content: center;  /* justify-content : 수평 정렬 방식 (flex 쌓이는 방향이 축) 
+                                                            space-between : 첫번째, 맨끝이 양끝에 가고 여백을 n빵
+                                                            space-around : 양옆에 똑같은 여백을 갖도록
+                                                화면의 사이즈를 줄이더라도 똑같은 여백의 사이즈를 갖도록 할 수 있는 게 바로 flex
+                                                아까 그냥 inline-block은 밑으로 내려갔었음.*/
+            align-items: center;  /* align-items : justify-content와 수직 방향이 축이 됨.*/
+            flex-direction:column;
+            /*기본 : row : item들이 가로로 쌓임
+            row-reverse : 순서 거꾸로
+            column : item들이 세로로 쌓임
+            column-reverse : item들이 세로로 거꾸로 쌓임
+                    이 때, column 으로 하게 되면 위의 justify-content의 축이 아까와는 다르게 세로 방향이 됨.*/
+        }
+    </style>
+</head>
+<body>
+    <div id="default-div">
+        div는 기본적으로 block 특성입니다. 한줄을 통째로 차지한다. <br/>
+        block요소와 inline 요소를 모두 포함할 수 있다<br/>
+        대표적으로 h1~h6, p, ul, ol가 있다.
+    </div>
+
+    <span id="default-span">
+        span은 기본적으로 inline 특성입니다. 가지고 있는 콘텐츠 만큼만 길이를 차지합니다.<br/>
+        inline 요소는 반드시 block 요소에 들어있어야 합니다. inline 요소는 block 요소를 담을 수 없습니다.<br/>
+        대표적으로 img, input, a 태그가 있다.
+    </span>
+
+    <div id="flex-container">
+
+        <div id="box1">
+            1
+        </div>
+
+        <div id="box2">
+            2
+        </div>
+
+        <div id="box3">
+            3
+        </div>
+        
+    </div>
+</body>
+</html>

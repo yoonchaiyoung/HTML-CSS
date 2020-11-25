@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자</title>
+
+    <style>
+        /* #은 id를 선택한다. */
+        /* .은 class를 선택한다. */
+
+        /* 태그의 이름만 활용한 것을 태그 선택자 라고 한다. */
+        span{
+            color:dodgerblue;
+        }
+
+        /* 온점(.)을 사용하면 클래스 선택자 */
+        .my-class {
+            font-style:italic;
+        }
+
+        /* 자식 선택자 (>) */
+        #container > h1{   /* container 안쪽에 있는 h1이라는 자식만 선택 */
+            color: aqua;
+        }
+
+        /* 후손 선택자 ( ) */
+        #container h1 {  /* container 안쪽에 있는 후손 h1 전부다 선택 */
+            font-style: italic;
+        }
+
+        /* 속성 선택자 ([속성명]) */
+        [title] {  /* 태그의 속성으로 title을 가지고 있는 것 전부 */
+            background-color:gold;
+        }
+
+        /* 속성 매칭 선택자 ([속성명 = '속성값']) */
+        [title="title1"] {
+            font-weight: 1000;  /* 굵기 */
+        }
+
+        /* 형제 선택자 (~) : 뒤에 있는 선택된 요소 선택하기 (형이 아닌 동생들을 선택하는 것) */
+        #my-span1 ~ input{  /* my-span1의 동생들은 my-span2, my-span3, my-class, my-input1, my-inpu2, checkbox, checkbox 가 있는 데 그 중에서 input만 */
+            background-color: red;
+        }
+
+        /* 형제 선택자 (+) : 바로 뒤에 있는 선택된 요소 1개만 선택하기 (동생 한 명만 선택하는 것) */
+        #my-span1 + input{  /* my-span1의 **바로 뒤**에있는 input만!인데 바로 뒤에 있는 게 my-span2라서 변화 X
+                                my-span1에 있는 input들중에서 맨 첫번째꺼를 고르는거 X!! */
+            background-color:yellow;
+        }
+
+        #my-span1 + * {  /* * : 에스퍼리스트. 아무거나. */
+            background-color:greenyellow;
+        }
+
+        /* input 속성 선택자 */
+        input:read_only{
+            color:white;
+        }
+
+        /* 라디오 버튼이나 체크박스에 많이 활요오디는 input:checked */
+        input:checked{  /* 체크가 된 것만 */
+            width:100px;
+            height:100px;
+        }
+
+        /* 마우스가 위로 올라 갔을 때 */
+        li:hover{
+            background-color:hotpink;
+        }
+
+        /* 방문하지 않은 링크(a태그)를 선택 */
+        a:link{
+            background-color:red;
+        }
+
+        /* 방문했던 링크를 선택 */
+        a:visited{
+            color:hotpink;
+        }
+
+        /* n번째 요소 선택하기 */
+        *:nth-child(2n-1){  /* 수열을 직접 정함. 2n-1 : 홀수, 2n : 짝수, 3n : 3의 배수.. */
+            font-size:12px;
+        }
+
+        #container *:first-child{  /* 자식들 중 1번째 */
+        /* #container span:first-child   container의 자손들 중 span들 중 첫 번째
+           #container span:last-child    container의 자손들 중 span들 중 맨 마지막
+        */
+            background-color:black;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <span>11</span>
+        <span>22</span>
+        <h1 id="my-h1">title</h1>
+        <ul id="my-ul">
+            <h1>Here is unordered list</h1>
+            <li>item 1</li>
+            <li><a href="#" id="my-a1">item 2 - link</li>
+            <li>
+                <a href="https://www.naver.com" id="my-a2">item 3 - naver</a>
+            </li>
+        </ul>
+        <span id="my-span1" title="title1">SPAN1</span>
+        <span id="my-span2" title="title2">SPAN2</span>
+        <span class="my-class" title="my-span3">SPAN3</span></br>
+        <h2 class="my-class">title2</h2>
+        <input id="my-input1" type="text" value="readonly text box" readonly /></br>
+        <input id="my-input2" type="text" value="not readonly text box" /></br>
+        <input type="checkbox" checked />
+        <input type="checkbox" />
+    </div>
+</body>
+</html>
